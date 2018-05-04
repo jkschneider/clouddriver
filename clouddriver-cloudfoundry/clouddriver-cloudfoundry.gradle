@@ -1,3 +1,5 @@
+apply plugin: 'nebula.facet'
+
 dependencies {
   compile project(":clouddriver-core")
 
@@ -5,4 +7,16 @@ dependencies {
   compile 'org.cloudfoundry:cloudfoundry-operations:3.5.0.RELEASE'
   compile 'io.projectreactor:reactor-core:3.1.5.RELEASE'
   compile 'io.projectreactor.ipc:reactor-netty:0.7.5.RELEASE'
+
+  spinnaker.group('test')
+}
+
+task licenseIntegTest(type: nl.javadude.gradle.plugins.license.License) {}
+
+facets {
+  integTest {
+    parentSourceSet = 'test'
+    testTaskName = 'integrationTest'
+    includeInCheckLifecycle = false
+  }
 }

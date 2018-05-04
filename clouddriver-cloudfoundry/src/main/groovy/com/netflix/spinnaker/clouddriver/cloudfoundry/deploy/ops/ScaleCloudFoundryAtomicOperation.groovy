@@ -4,12 +4,11 @@ import com.netflix.spinnaker.clouddriver.cloudfoundry.deploy.description.ScaleCl
 import com.netflix.spinnaker.clouddriver.data.task.Task
 import com.netflix.spinnaker.clouddriver.data.task.TaskRepository
 import com.netflix.spinnaker.clouddriver.orchestration.AtomicOperation
+import org.cloudfoundry.reactor.DefaultConnectionContext
+import org.cloudfoundry.reactor.client.ReactorCloudFoundryClient
 
 class ScaleCloudFoundryAtomicOperation implements AtomicOperation<Void> {
   private static final String PHASE = "CF_SCALE"
-
-//  @Autowired
-//  CloudFoundryClientFactory cloudFoundryClientFactory
 
   private final ScaleCloudFoundryDescription description
 
@@ -23,10 +22,17 @@ class ScaleCloudFoundryAtomicOperation implements AtomicOperation<Void> {
 
   @Override
   Void operate(List priorOutputs) {
+    def context = DefaultConnectionContext.builder()
+      .apiHost(description.apiHost)
+      .build()
+
+    def client = ReactorCloudFoundryClient.builder()
+      .connectionContext(context)
+      .tokenProvider(description.credentials.credentials)
+      .build()
+
     task.updateStatus PHASE, "Initializing resize of server group $description.serverGroupName in " +
       "$description.region..."
-
-    def client = cloudFoundryClientFactory.createCloudFoundryClient(description.credentials, true)
 
     def app = client.getApplication(description.serverGroupName)
 
