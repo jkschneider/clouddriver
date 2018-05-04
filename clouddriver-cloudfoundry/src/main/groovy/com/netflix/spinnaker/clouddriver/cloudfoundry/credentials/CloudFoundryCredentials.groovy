@@ -3,6 +3,7 @@ package com.netflix.spinnaker.clouddriver.cloudfoundry.credentials
 import com.netflix.spinnaker.clouddriver.security.AccountCredentials
 import com.netflix.spinnaker.fiat.model.resources.Permissions
 import org.cloudfoundry.reactor.TokenProvider
+import org.cloudfoundry.reactor.tokenprovider.PasswordGrantTokenProvider
 
 class CloudFoundryCredentials implements AccountCredentials<TokenProvider> {
   private static final String CLOUD_PROVIDER = "cloudfoundry";
@@ -12,15 +13,24 @@ class CloudFoundryCredentials implements AccountCredentials<TokenProvider> {
   final String accountType
   final List<String> requiredGroupMembership = Collections.emptyList()
 
-  CloudFoundryCredentials(String name, String environment, String accountType) {
+  final String userName
+  final String password
+
+  CloudFoundryCredentials(String userName, String password, String name = 'main', String environment = 'prod',
+                          String accountType = 'mainprod') {
     this.name = name
     this.environment = environment
     this.accountType = accountType
+    this.userName = userName
+    this.password = password
   }
 
   @Override
   TokenProvider getCredentials() {
-    return null
+    return PasswordGrantTokenProvider.builder()
+      .username(userName)
+      .password(password)
+      .build()
   }
 
   @Override

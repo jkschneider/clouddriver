@@ -31,27 +31,27 @@ class ScaleCloudFoundryAtomicOperation implements AtomicOperation<Void> {
       .tokenProvider(description.credentials.credentials)
       .build()
 
-    task.updateStatus PHASE, "Initializing resize of server group $description.serverGroupName in " +
-      "$description.region..."
+//    task.updateStatus PHASE, "Initializing resize of server group $description.serverGroupName in " +
+//      "$description.region..."
 
-    def app = client.getApplication(description.serverGroupName)
+//    def app = client.getApplication(description.serverGroupName)
+//
+//    if (app.instances != description.targetSize) {
+//      task.updateStatus PHASE, "Changing ${description.serverGroupName} to ${description.targetSize} instances"
+//      client.updateApplicationInstances(description.serverGroupName, description.targetSize)
+//    }
+//
+//    if (app.memory != description.memory) {
+//      task.updateStatus PHASE, "Changing ${description.serverGroupName} to ${description.memory}MB memory"
+//      client.updateApplicationMemory(description.serverGroupName, description.memory)
+//    }
+//
+//    if (app.diskQuota != description.disk) {
+//      task.updateStatus PHASE, "Changing ${description.serverGroupName} to ${description.disk}MB disk limit"
+//      client.updateApplicationDiskQuota(description.serverGroupName, description.disk)
+//    }
 
-    if (app.instances != description.targetSize) {
-      task.updateStatus PHASE, "Changing ${description.serverGroupName} to ${description.targetSize} instances"
-      client.updateApplicationInstances(description.serverGroupName, description.targetSize)
-    }
-
-    if (app.memory != description.memory) {
-      task.updateStatus PHASE, "Changing ${description.serverGroupName} to ${description.memory}MB memory"
-      client.updateApplicationMemory(description.serverGroupName, description.memory)
-    }
-
-    if (app.diskQuota != description.disk) {
-      task.updateStatus PHASE, "Changing ${description.serverGroupName} to ${description.disk}MB disk limit"
-      client.updateApplicationDiskQuota(description.serverGroupName, description.disk)
-    }
-
-    task.updateStatus PHASE, "Done resizing server group $description.serverGroupName in $description.region."
+//    task.updateStatus PHASE, "Done resizing server group $description.serverGroupName in $description.region."
     null
   }
 }
