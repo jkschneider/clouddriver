@@ -6,7 +6,7 @@ import org.cloudfoundry.reactor.TokenProvider
 import org.cloudfoundry.reactor.tokenprovider.PasswordGrantTokenProvider
 
 class CloudFoundryCredentials implements AccountCredentials<TokenProvider> {
-  private static final String CLOUD_PROVIDER = "cloudfoundry";
+  private static final String CLOUD_PROVIDER = "cloudfoundry"
 
   final String name
   final String environment
