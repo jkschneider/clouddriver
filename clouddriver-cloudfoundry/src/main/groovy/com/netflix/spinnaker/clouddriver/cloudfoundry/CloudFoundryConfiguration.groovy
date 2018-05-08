@@ -16,18 +16,21 @@
 
 package com.netflix.spinnaker.clouddriver.cloudfoundry
 
-import spock.lang.Specification
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
+import org.springframework.boot.context.properties.EnableConfigurationProperties
+import org.springframework.context.annotation.ComponentScan
+import org.springframework.context.annotation.Configuration
+import org.springframework.scheduling.annotation.EnableScheduling
 
-class CloudFoundryCloudProviderSpec extends Specification {
+/**
+ * Configuration for Cloud Foundry provider.
+ */
+@Configuration
+@EnableConfigurationProperties
+@EnableScheduling
+@ConditionalOnProperty('cloudfoundry.enabled')
+@ComponentScan(["com.netflix.spinnaker.clouddriver.cloudfoundry"])
+class CloudFoundryConfiguration {
 
-  void "check basics"() {
-    when:
-    def provider = new CloudFoundryCloudProvider()
-
-    then:
-    provider.displayName == 'Cloud Foundry'
-    provider.id == 'cloudfoundry'
-    provider.operationAnnotationType == CloudFoundryOperation
-  }
 
 }
