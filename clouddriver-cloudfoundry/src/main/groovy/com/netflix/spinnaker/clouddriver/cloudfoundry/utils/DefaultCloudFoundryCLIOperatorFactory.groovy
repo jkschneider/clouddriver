@@ -16,13 +16,13 @@
 
 package com.netflix.spinnaker.clouddriver.cloudfoundry.utils
 
-import com.netflix.spinnaker.clouddriver.cloudfoundry.deploy.description.AbstractCloudFoundryCredentialsDescription
+import com.netflix.spinnaker.clouddriver.cloudfoundry.deploy.description.AbstractCloudFoundryDescription
 import org.cloudfoundry.operations.DefaultCloudFoundryOperations
 import org.cloudfoundry.reactor.DefaultConnectionContext
 import org.cloudfoundry.reactor.client.ReactorCloudFoundryClient
 
 class DefaultCloudFoundryCLIOperatorFactory implements CloudFoundryCLIOperatorFactory{
-  DefaultCloudFoundryOperations createCloudFoundryCLIOperator(AbstractCloudFoundryCredentialsDescription description){
+  DefaultCloudFoundryOperations createCloudFoundryCLIOperator(AbstractCloudFoundryDescription description){
 
     def context = DefaultConnectionContext.builder()
       .apiHost(description.apiHost)
@@ -36,6 +36,8 @@ class DefaultCloudFoundryCLIOperatorFactory implements CloudFoundryCLIOperatorFa
 
     DefaultCloudFoundryOperations.builder()
       .cloudFoundryClient(client)
+      .organization(description.organization)
+      .space(description.organization)
       .build()
   }
 }

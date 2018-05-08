@@ -7,6 +7,8 @@ import spock.lang.Specification
 class AbstractCloudFoundryIntegSpec extends Specification {
   @Shared CloudFoundryCredentials credentials
   @Shared String apiHost
+  @Shared String organization
+  @Shared String space
 
   def setupSpec() {
     def props = new Properties()
@@ -20,5 +22,7 @@ class AbstractCloudFoundryIntegSpec extends Specification {
     )
 
     apiHost = props.apiHost.with { assert it : 'add apiHost to resources/credentials.properties'; it }
+    organization = props.organization.with { assert it : 'add organization to resources/credentials.properties'; it }
+    space = props.space.with { assert it : 'add space to resources/credentials.properties'; it }
   }
 }

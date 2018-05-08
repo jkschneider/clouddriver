@@ -14,11 +14,20 @@
  * limitations under the License.
  */
 
-package com.netflix.spinnaker.clouddriver.cloudfoundry.utils
+package com.netflix.spinnaker.clouddriver.cloudfoundry
 
-import com.netflix.spinnaker.clouddriver.cloudfoundry.deploy.description.AbstractCloudFoundryDescription
-import org.cloudfoundry.operations.DefaultCloudFoundryOperations
+import spock.lang.Specification
 
-interface CloudFoundryCLIOperatorFactory {
-  DefaultCloudFoundryOperations createCloudFoundryCLIOperator(AbstractCloudFoundryDescription description)
+class CloudFoundryCloudProviderSpec extends Specification {
+
+  void "check basics"() {
+    when:
+    def provider = new CloudFoundryCloudProvider()
+
+    then:
+    provider.displayName == 'Cloud Foundry'
+    provider.id == 'cloudfoundry'
+    provider.operationAnnotationType == CloudFoundryOperation
+  }
+
 }

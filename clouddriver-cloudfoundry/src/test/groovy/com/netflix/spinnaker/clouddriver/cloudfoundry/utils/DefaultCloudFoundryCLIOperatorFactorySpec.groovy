@@ -17,14 +17,14 @@
 package com.netflix.spinnaker.clouddriver.cloudfoundry.utils
 
 import com.netflix.spinnaker.clouddriver.cloudfoundry.credentials.CloudFoundryCredentials
-import com.netflix.spinnaker.clouddriver.cloudfoundry.deploy.description.AbstractCloudFoundryCredentialsDescription
+import com.netflix.spinnaker.clouddriver.cloudfoundry.deploy.description.AbstractCloudFoundryDescription
 import org.cloudfoundry.operations.DefaultCloudFoundryOperations
 import spock.lang.Specification
 
 class DefaultCloudFoundryCLIOperatorFactorySpec extends Specification {
   def '#createCloudFoundryCLIOperator uses credentials passed in the description' (){
     given:
-    def mockDescription = Mock(AbstractCloudFoundryCredentialsDescription)
+    def mockDescription = Mock(AbstractCloudFoundryDescription)
     def credentials = new CloudFoundryCredentials("someFooName","somePassword")
     def cloudfoundryClientFactory = new DefaultCloudFoundryCLIOperatorFactory()
     mockDescription.apiHost >> "api.local.pcfdev.io"

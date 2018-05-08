@@ -14,11 +14,9 @@
  * limitations under the License.
  */
 
-package com.netflix.spinnaker.clouddriver.cloudfoundry.utils
+package com.netflix.spinnaker.clouddriver.cloudfoundry.deploy.description
 
-import com.netflix.spinnaker.clouddriver.cloudfoundry.deploy.description.AbstractCloudFoundryDescription
-import org.cloudfoundry.operations.DefaultCloudFoundryOperations
+class DeployCloudFoundryAtomicOperationDescription extends AbstractCloudFoundryDescription {
 
-interface CloudFoundryCLIOperatorFactory {
-  DefaultCloudFoundryOperations createCloudFoundryCLIOperator(AbstractCloudFoundryDescription description)
+  String serverGroupName
 }
