@@ -267,18 +267,15 @@ dockerRegistry:
 dcos:
   enabled: false
 
-cf:
-  enabled: ${providers.cf.enabled:false}
+cloudfoundry:
+  enabled: ${providers.cloudfoundry.enabled:false}
   accounts:
-    - name: ${providers.cf.primaryCredentials.name}
-      api: ${providers.cf.primaryCredentials.api}
-      console: ${providers.cf.primaryCredentials.console}
-      org: ${providers.cf.defaultOrg}
-      space: ${providers.cf.defaultSpace}
-      username: ${cf.account.name}
-      password: ${cf.account.password}
-      artifactUsername: ${cf.repo.username}
-      artifactPassword: ${cf.repo.password}
+    - name: ${providers.cloudfoundry.primaryCredentials.name}
+      api: ${providers.cloudfoundry.primaryCredentials.api}
+      user: ${cloudfoundry.primaryCredentials.name}
+      password: ${cloudfoundry.primaryCredentials.password}
+      org: ${providers.cloudfoundry.org}
+      space: ${providers.cloudfoundry.space}
 
 oraclebmcs:
   enabled: ${ORACLEBMCS_ENABLED:false}

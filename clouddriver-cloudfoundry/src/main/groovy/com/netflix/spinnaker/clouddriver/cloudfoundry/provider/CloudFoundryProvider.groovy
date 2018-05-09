@@ -41,9 +41,9 @@ class CloudFoundryProvider extends AgentSchedulerAware implements SearchableProv
 
   final Set<String> defaultCaches = [].asImmutable()
 
-  final Map<String, String> urlMappingTemplates = [].asImmutable()
+  final Map<String, String> urlMappingTemplates = [:].asImmutable()
 
-  final Map<SearchableResource, SearchableProvider.SearchResultHydrator> searchResultHydrators = Collections.emptyMap()
+  final Map<SearchableResource, SearchableProvider.SearchResultHydrator> searchResultHydrators = [:]
 
   @Override
   Map<String, String> parseKey(String key) {
