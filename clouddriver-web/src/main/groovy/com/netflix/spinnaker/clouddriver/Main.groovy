@@ -16,23 +16,15 @@
 
 package com.netflix.spinnaker.clouddriver
 
-import com.netflix.spinnaker.clouddriver.appengine.AppengineConfiguration
-import com.netflix.spinnaker.clouddriver.appengine.artifacts.AppengineStorageConfiguration
 import com.netflix.spinnaker.clouddriver.artifacts.ArtifactConfiguration
 import com.netflix.spinnaker.clouddriver.aws.AwsConfiguration
-import com.netflix.spinnaker.clouddriver.azure.AzureConfiguration
+import com.netflix.spinnaker.clouddriver.cloudfoundry.CloudFoundryConfiguration
 import com.netflix.spinnaker.clouddriver.core.CloudDriverConfig
 import com.netflix.spinnaker.clouddriver.core.RetrofitConfig
-import com.netflix.spinnaker.clouddriver.dcos.DcosConfiguration
 import com.netflix.spinnaker.clouddriver.deploy.config.DeployConfiguration
-import com.netflix.spinnaker.clouddriver.docker.registry.DockerRegistryConfiguration
-import com.netflix.spinnaker.clouddriver.ecs.EcsConfiguration
 import com.netflix.spinnaker.clouddriver.eureka.EurekaProviderConfiguration
 import com.netflix.spinnaker.clouddriver.google.GoogleConfiguration
 import com.netflix.spinnaker.clouddriver.jobs.config.LocalJobConfig
-import com.netflix.spinnaker.clouddriver.kubernetes.KubernetesConfiguration
-import com.netflix.spinnaker.clouddriver.openstack.OpenstackConfiguration
-import com.netflix.spinnaker.clouddriver.oraclebmcs.OracleBMCSConfiguration
 import com.netflix.spinnaker.clouddriver.security.config.SecurityConfig
 import com.netflix.spinnaker.clouddriver.titus.config.TitusConfiguration
 
@@ -55,22 +47,14 @@ import java.security.Security
   WebConfig,
   ErrorConfiguration,
   CloudDriverConfig,
+  CloudFoundryConfiguration,
   DeployConfiguration,
   RetrofitConfig,
   AwsConfiguration,
   ArtifactConfiguration,
-  EcsConfiguration,
-  AppengineConfiguration,
-  AppengineStorageConfiguration,
   GoogleConfiguration,
-  OracleBMCSConfiguration,
-  KubernetesConfiguration,
-  OpenstackConfiguration,
-  DockerRegistryConfiguration,
-  AzureConfiguration,
   SecurityConfig,
   EurekaProviderConfiguration,
-  DcosConfiguration,
   LocalJobConfig,
   TitusConfiguration
 ])
