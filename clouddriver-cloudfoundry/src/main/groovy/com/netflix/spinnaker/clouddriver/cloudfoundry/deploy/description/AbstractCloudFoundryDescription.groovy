@@ -26,4 +26,8 @@ abstract class AbstractCloudFoundryDescription {
   String apiHost
   String organization
   String space
+
+  String doSomething () {
+    return "doing something"
+  }
 }

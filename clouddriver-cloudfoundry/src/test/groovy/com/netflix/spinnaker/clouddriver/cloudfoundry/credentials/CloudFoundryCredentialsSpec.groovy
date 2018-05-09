@@ -25,12 +25,11 @@ class CloudFoundryCredentialsSpec extends Specification {
     def password = 'my-password'
 
     when:
-    def credentials = new CloudFoundryCredentials(username: username, password: password)
-    def cloudCredentials = credentials.credentials
+    def credentials = new CloudFoundryCredentials(username, password)
 
     then:
-    cloudCredentials.email == username
-    cloudCredentials.password == password
+    credentials.userName == username
+    credentials.password == password
     credentials.cloudProvider == 'cloudfoundry'
   }
 }

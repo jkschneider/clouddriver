@@ -39,18 +39,15 @@ class CloudFoundryProvider extends AgentSchedulerAware implements SearchableProv
     agents
   }
 
-  final Set<String> defaultCaches = [SERVER_GROUPS.ns, CLUSTERS.ns].asImmutable()
+  final Set<String> defaultCaches = [].asImmutable()
 
-  final Map<String, String> urlMappingTemplates = [
-    (SERVER_GROUPS.ns): '/applications/${application.toLowerCase()}/clusters/$account/$cluster/$provider/serverGroups/$serverGroup?region=$region',
-    (CLUSTERS.ns): '/applications/${application.toLowerCase()}/clusters/$account/$cluster'
-  ].asImmutable()
+  final Map<String, String> urlMappingTemplates = [].asImmutable()
 
   final Map<SearchableResource, SearchableProvider.SearchResultHydrator> searchResultHydrators = Collections.emptyMap()
 
   @Override
   Map<String, String> parseKey(String key) {
-    return Keys.parse(key)
+    null
   }
 
 }

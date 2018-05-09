@@ -1,12 +1,20 @@
 apply plugin: 'nebula.facet'
 
 dependencies {
+  compile project(":clouddriver-artifacts")
   compile project(":clouddriver-core")
+
+  compile spinnaker.dependency('frigga')
+  compile spinnaker.dependency('bootActuator')
+  compile spinnaker.dependency('bootWeb')
 
   compile 'org.cloudfoundry:cloudfoundry-client-reactor:3.5.0.RELEASE'
   compile 'org.cloudfoundry:cloudfoundry-operations:3.5.0.RELEASE'
   compile 'io.projectreactor:reactor-core:3.1.5.RELEASE'
   compile 'io.projectreactor.ipc:reactor-netty:0.7.5.RELEASE'
+
+  compile spinnaker.dependency('korkArtifacts')
+  compile spinnaker.dependency('lombok')
 
   spinnaker.group('test')
 }

@@ -16,15 +16,17 @@
 
 package com.netflix.spinnaker.clouddriver.cloudfoundry
 
+import com.netflix.spinnaker.cats.agent.Agent
+import com.netflix.spinnaker.clouddriver.cloudfoundry.provider.CloudFoundryProvider
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.context.properties.EnableConfigurationProperties
+import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 import org.springframework.scheduling.annotation.EnableScheduling
 
-/**
- * Configuration for Cloud Foundry provider.
- */
+import java.util.concurrent.ConcurrentHashMap
+
 @Configuration
 @EnableConfigurationProperties
 @EnableScheduling
@@ -32,5 +34,11 @@ import org.springframework.scheduling.annotation.EnableScheduling
 @ComponentScan(["com.netflix.spinnaker.clouddriver.cloudfoundry"])
 class CloudFoundryConfiguration {
 
+  @Bean
+  CloudFoundryProvider cloudFoundryProvider() {
+    def cloudFoundryProvider =
+      new CloudFoundryProvider(Collections.newSetFromMap(new ConcurrentHashMap<Agent, Boolean>()))
+    cloudFoundryProvider
+  }
 
 }
