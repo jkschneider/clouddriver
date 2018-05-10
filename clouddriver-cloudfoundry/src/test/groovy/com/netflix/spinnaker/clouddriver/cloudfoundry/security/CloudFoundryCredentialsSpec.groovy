@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.netflix.spinnaker.clouddriver.cloudfoundry.credentials
+package com.netflix.spinnaker.clouddriver.cloudfoundry.security
 
 import spock.lang.Specification
 
@@ -25,7 +25,7 @@ class CloudFoundryCredentialsSpec extends Specification {
     def password = 'my-password'
 
     when:
-    def credentials = new CloudFoundryCredentials(username, password)
+    def credentials = new CloudFoundryAccountCredentials(username, password)
 
     then:
     credentials.userName == username

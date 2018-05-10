@@ -17,11 +17,11 @@
 package com.netflix.spinnaker.clouddriver.cloudfoundry.deploy.description
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import com.netflix.spinnaker.clouddriver.cloudfoundry.credentials.CloudFoundryCredentials
+import com.netflix.spinnaker.clouddriver.cloudfoundry.security.CloudFoundryAccountCredentials
 
 abstract class AbstractCloudFoundryDescription {
   @JsonIgnore
-  CloudFoundryCredentials credentials
+  CloudFoundryAccountCredentials credentials
 
   String apiHost
   String organization

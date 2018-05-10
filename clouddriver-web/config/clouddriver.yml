@@ -272,8 +272,8 @@ cloudfoundry:
   accounts:
     - name: ${providers.cloudfoundry.primaryCredentials.name}
       api: ${providers.cloudfoundry.primaryCredentials.api}
-      user: ${cloudfoundry.primaryCredentials.name}
-      password: ${cloudfoundry.primaryCredentials.password}
+      user: ${providers.cloudfoundry.primaryCredentials.user}
+      password: ${providers.cloudfoundry.primaryCredentials.password}
       org: ${providers.cloudfoundry.org}
       space: ${providers.cloudfoundry.space}
 

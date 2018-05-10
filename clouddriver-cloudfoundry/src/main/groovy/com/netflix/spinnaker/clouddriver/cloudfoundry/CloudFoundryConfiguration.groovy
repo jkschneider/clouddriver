@@ -16,7 +16,10 @@
 
 package com.netflix.spinnaker.clouddriver.cloudfoundry
 
+import com.netflix.spinnaker.cats.provider.ProviderSynchronizerTypeWrapper
+import com.netflix.spinnaker.clouddriver.cloudfoundry.config.CloudFoundryConfigurationProperties
 import com.netflix.spinnaker.clouddriver.cloudfoundry.provider.CloudFoundryProvider
+import com.netflix.spinnaker.clouddriver.cloudfoundry.security.CloudFoundryCredentialsInitializer
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
@@ -30,6 +33,30 @@ import org.springframework.scheduling.annotation.EnableScheduling
 @ConditionalOnProperty('cloudfoundry.enabled')
 @ComponentScan(['com.netflix.spinnaker.clouddriver.cloudfoundry'])
 class CloudFoundryConfiguration {
+
+  @Bean
+  CloudFoundryConfigurationProperties cloudFoundryConfigurationProperties (){
+    new CloudFoundryConfigurationProperties()
+  }
+
+  @Bean
+  CloudFoundrySynchronizerTypeWrapper cloudFoundrySynchronizerTypeWrapper() {
+    new CloudFoundrySynchronizerTypeWrapper()
+  }
+
+  class CloudFoundrySynchronizerTypeWrapper implements ProviderSynchronizerTypeWrapper {
+    @Override
+    Class getSynchronizerType() {
+      CloudFoundryProviderSynchronizer
+    }
+  }
+
+  class CloudFoundryProviderSynchronizer {}
+
+  @Bean
+  CloudFoundryCredentialsInitializer cloudFoundryCredentialsInitializer() {
+    new CloudFoundryCredentialsInitializer()
+  }
 
   @Bean
   CloudFoundryProvider cloudFoundryProvider() {

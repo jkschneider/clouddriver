@@ -14,29 +14,30 @@
  * limitations under the License.
  */
 
-package com.netflix.spinnaker.clouddriver.cloudfoundry.credentials
+package com.netflix.spinnaker.clouddriver.cloudfoundry.security
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.netflix.spinnaker.clouddriver.security.AccountCredentials
-import com.netflix.spinnaker.fiat.model.resources.Permissions
 import org.cloudfoundry.reactor.TokenProvider
 import org.cloudfoundry.reactor.tokenprovider.PasswordGrantTokenProvider
 
-class CloudFoundryCredentials implements AccountCredentials<TokenProvider> {
+class CloudFoundryAccountCredentials implements AccountCredentials<TokenProvider> {
   private static final String CLOUD_PROVIDER = "cloudfoundry"
 
   final String name
   final String environment
-  final String accountType
+  final String accountType = CLOUD_PROVIDER
   final List<String> requiredGroupMembership = Collections.emptyList()
 
+  @JsonIgnore
   final String userName
+
+  @JsonIgnore
   final String password
 
-  CloudFoundryCredentials(String userName, String password, String name = 'main', String environment = 'prod',
-                          String accountType = 'mainprod') {
+  CloudFoundryAccountCredentials(String userName, String password, String name, String environment = 'prod') {
     this.name = name
     this.environment = environment
-    this.accountType = accountType
     this.userName = userName
     this.password = password
   }
@@ -54,8 +55,4 @@ class CloudFoundryCredentials implements AccountCredentials<TokenProvider> {
     return CLOUD_PROVIDER
   }
 
-  @Override
-  Permissions getPermissions() {
-    return super.getPermissions()
-  }
 }
